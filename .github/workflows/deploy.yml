@@ -11,11 +11,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    # ✅ Checkout the code from GitHub
+    # Checkout the code from GitHub
     - name: Checkout Code
       uses: actions/checkout@v4
 
-    # ✅ Configure AWS Credentials
+    # Configure AWS Credentials
     - name: Configure AWS Credentials
       uses: aws-actions/configure-aws-credentials@v4
       with:
@@ -23,26 +23,26 @@ jobs:
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         aws-region: ap-south-1  # AWS Mumbai region
 
-    # ✅ Set up Python environment
+    # Set up Python environment
     - name: Set up Python
       uses: actions/setup-python@v5
       with:
         python-version: '3.12'
 
-    # ✅ Install project dependencies
+    # Install project dependencies
     - name: Install Dependencies
       run: |
         python -m venv venv
         source venv/bin/activate
         pip install -r requirements.txt
 
-    # ✅ SSH into EC2 and deploy the project
+    # SSH into EC2 and deploy the project
     - name: Deploy to EC2
       uses: appleboy/ssh-action@master
       with:
         host: ${{ secrets.EC2_PUBLIC_IP }}               # Your EC2 public IP
         username: ubuntu                                 # Use ubuntu user
-        key: ${{ secrets.EC2_SSH_KEY }}                   # SSH private key
+        key: ${{ secrets.EC2_KEY }}                 # Ec2 private key
         script: |
           # Navigate to the project directory
           cd /home/ubuntu/Demo
@@ -64,7 +64,8 @@ jobs:
 
           # Print deployment message
           echo "Deployment complete ✅"
+        shell: bash    
 
-    # ✅ Notify the deployment status
+    # Notify the deployment status
     - name: Notify Deployment Status
       run: echo "Deployment finished successfully 🚀"
