@@ -38,7 +38,6 @@ Pygments==2.18.0
 pyjokes==0.8.3
 pyjsparser==2.7.1
 pymongo==4.10.1
-pypiwin32==223
 PyPrind==2.11.3
 pySmartDL==1.3.4
 python-dateutil==2.9.0.post0
