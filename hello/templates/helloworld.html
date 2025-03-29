@@ -29,6 +29,11 @@
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
             animation: bounce 1.5s infinite alternate;
         }
+        p {
+            font-size: 1.5rem;
+            color: white;
+            margin-top: 15px;
+        }
         @keyframes bounce {
             from {
                 transform: translateY(0);
@@ -50,6 +55,25 @@
 <body>
     <div class="hello-container">
         <h1>Hello, World! 🌍</h1>
+        <p id="greeting"></p>  <!-- Greeting displayed below -->
     </div>
+
+    <script>
+        const now = new Date();
+        const hours = now.getHours();
+        let message = "";
+
+        if (hours >= 5 && hours < 12) {
+            message = "Good Morning! ☀️";
+        } else if (hours >= 12 && hours < 18) {
+            message = "Good Afternoon! 🌤️";
+        } else if (hours >= 18 && hours < 21) {
+            message = "Good Evening! 🌙";
+        } else {
+            message = "Good Night! 🌌";
+        }
+
+        document.getElementById("greeting").innerText = message;
+    </script>
 </body>
 </html>
