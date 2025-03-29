@@ -66,8 +66,12 @@ jobs:
           # Run database migrations
           python3 manage.py migrate
 
-          # Restart Gunicorn service
-          sudo systemctl restart django-hello
+          # Collect static files
+          python3 manage.py collectstatic --noinput
+
+          # Restart Gunicorn and NGINX
+          sudo systemctl restart django-hello    # Restart Gunicorn
+          sudo systemctl restart nginx           # Restart NGINX
 
           # Print deployment message
           echo "Deployment complete ✅"
