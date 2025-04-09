@@ -5,6 +5,9 @@ on:
     branches:
       - main  # Trigger on main branch push
   workflow_dispatch:
+permissions:
+  id-token: write
+  contents: read
 
 jobs:
   deploy:
